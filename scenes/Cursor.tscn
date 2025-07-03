@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://d2gmvehtmgy43"]
+
+[node name="Cursor" type="Control"]
+layout_mode = 3
+anchor_right = 0.008
+anchor_bottom = 0.011
+offset_bottom = -0.500002
+
+[node name="Center" type="ColorRect" parent="."]
+z_index = 1
+y_sort_enabled = true
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+pivot_offset = Vector2(8, 8)
+color = Color(0.501961, 0.815686, 0.898039, 0.368627)
+
+[node name="Outline" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = -2.0
+offset_right = 18.0
+offset_bottom = 18.0
+color = Color(0.27451, 0.835294, 0.796078, 0.121569)
