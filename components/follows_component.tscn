@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://0x0uclmjefoo"]
+
+[ext_resource type="Script" uid="uid://kplsu1e8eumv" path="res://entities/dino/follows_component.gd" id="1_5elwu"]
+
+[node name="Follows Component" type="Node2D"]
+scale = Vector2(0.571429, 0.571429)
+script = ExtResource("1_5elwu")
+speed = 70.0
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 5.0
+target_desired_distance = 5.0
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.942771, 0.191429, 0.185057, 1)

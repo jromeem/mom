@@ -11,13 +11,18 @@ config_version=5
 [application]
 
 config/name="MakersOfMagic"
-run/main_scene="res://scenes/Main.tscn"
+run/main_scene="res://main/Main.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
 [display]
 
 window/size/viewport_width=2000
 window/size/viewport_height=1500
+
+[global_group]
+
+Player="it's the player lol"
+Cursor="it's the cursor"
 
 [input]
 
