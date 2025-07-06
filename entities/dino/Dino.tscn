@@ -231,6 +231,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sursh")
 
 [node name="FollowsComponent" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_dngs1")]
+target_visualized = true
 follower = NodePath("..")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_2dk2g")]

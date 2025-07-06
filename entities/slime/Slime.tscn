@@ -105,4 +105,5 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_veqx5")
 
 [node name="Follows Component" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("4_07yf0")]
+speed = 50.0
 follower = NodePath("..")

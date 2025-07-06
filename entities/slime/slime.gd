@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var update_timer: float = 0.0
 
-@export var speed = 50
 @export var update_interval = 0.3
 @export var max_follow_distance = 80.0
 

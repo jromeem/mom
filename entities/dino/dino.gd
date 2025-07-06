@@ -29,9 +29,9 @@ func _on_conjuration_toggle():
 		conjuring_fx_component.add_fx()
 		state_machine._on_child_transitioned(state_machine.current_state, "ConjurationState")
 
-func _on_terrain_clicked_for_movement(position: Vector2):
+func _on_terrain_clicked_for_movement(pos: Vector2):
 	if is_conjuring():
 		return  # Can't move while conjuring
 	
-	follows_component.set_target(position)
+	follows_component.set_target(pos)
 	state_machine._on_child_transitioned(state_machine.current_state, "NavigateState")

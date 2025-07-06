@@ -12,11 +12,11 @@ func can_conjure() -> bool:
 func enter():
 	print("entering Navigate state")
 	sprite.play("walk")
-	follows_component.reached_target.connect(_on_reached_target)
+	SignalManager.reached_target.connect(_on_reached_target)
 	
 func exit():
 	print("exiting Navigate state")
-	follows_component.reached_target.disconnect(_on_reached_target)
+	SignalManager.reached_target.disconnect(_on_reached_target.bind())
 	
 func update(_delta: float):
 	sprite.play("walk")
@@ -27,6 +27,6 @@ func update(_delta: float):
 	follows_component.follow_target()
 	character.move_and_slide()
 
-func _on_reached_target():
-	# Transition back to idle unless conjuration was queued in the middle of navigation
-	transitioned.emit(self, "IdleState")
+func _on_reached_target(who_are_you: CharacterBody2D):
+	if (who_are_you == character):
+		transitioned.emit(self, "IdleState")
