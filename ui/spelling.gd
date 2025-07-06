@@ -26,6 +26,7 @@ func _on_conjure_toggle():
 	
 	var dino = get_tree().get_first_node_in_group("Player")
 	if not dino.can_conjure():
+		isConjuring = false
 		return # don't allow conjuring -- ui doesnt show
 	
 	if isConjuring:

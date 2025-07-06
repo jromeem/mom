@@ -19,6 +19,7 @@ func exit():
 	print("exiting Conjuration state")
 	fx.remove()
 	SignalManager.spacebar_pressed_for_conjuration.disconnect(_on_conjuration_ended)
+	SignalManager.enter_pressed_for_casting.disconnect(_on_conjuration_submitted)
 	
 func _on_conjuration_submitted():
 	transitioned.emit(self, "IdleState")
