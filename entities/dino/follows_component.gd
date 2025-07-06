@@ -37,12 +37,14 @@ func place_target(pos: Vector2):
 	target_square.size = Vector2(grid_size, grid_size)
 	target_square.color = Color(1, 0, 0, 0.30)  # Transparent red
 	target_square.global_position = pos
+	target_square.z_index = 1
 	
 	# Create outline
 	outline_square = ColorRect.new()
 	outline_square.size = Vector2(grid_size + 4, grid_size + 4)
 	outline_square.color = Color(1, 0, 0, 0.1)  # Transparent red
 	outline_square.global_position = Vector2(pos.x - 2, pos.y - 2)
+	outline_square.z_index = 1
 	
 	# Add to the root of the current scene
 	get_tree().current_scene.add_child(target_square)

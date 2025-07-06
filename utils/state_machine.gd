@@ -17,11 +17,11 @@ func _ready() -> void:
 		current_state = initial_state
 
 func _process(delta: float) -> void:
-	if (current_state):
+	if current_state:
 		current_state.update(delta)
 		
 func _physics_process(delta: float) -> void:
-	if (current_state):
+	if current_state:
 		current_state.physics_update(delta)
 
 func _on_child_transitioned(state, new_state_name):

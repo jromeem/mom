@@ -6,10 +6,10 @@ class_name ConjuringFxComponent
 func _ready() -> void:
 	conjuring_fx.visible = false
 
-func add_fx():
+func add():
 	conjuring_fx.play("smoke_circle")
 	conjuring_fx.visible = true
 
-func remove_fx():
+func remove():
 	conjuring_fx.stop()
 	conjuring_fx.visible = false

@@ -13,14 +13,16 @@ func enter():
 	print("entering Navigate state")
 	sprite.play("walk")
 	SignalManager.reached_target.connect(_on_reached_target)
+	SignalManager.spacebar_pressed_for_conjuration.connect(_on_navigating_will_conjure)
 	
 func exit():
 	print("exiting Navigate state")
-	SignalManager.reached_target.disconnect(_on_reached_target.bind())
+	SignalManager.reached_target.disconnect(_on_reached_target)
+	SignalManager.spacebar_pressed_for_conjuration.disconnect(_on_navigating_will_conjure)
 	
 func update(_delta: float):
 	sprite.play("walk")
-	if (character.velocity.x < 0):
+	if character.velocity.x < 0:
 		sprite.flip_h = true
 	else:
 		sprite.flip_h = false
@@ -28,5 +30,9 @@ func update(_delta: float):
 	character.move_and_slide()
 
 func _on_reached_target(who_are_you: CharacterBody2D):
-	if (who_are_you == character):
+	if who_are_you == character:
 		transitioned.emit(self, "IdleState")
+		
+# use later??
+func _on_navigating_will_conjure():
+	conjuration_queued = !conjuration_queued

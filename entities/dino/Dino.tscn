@@ -249,9 +249,10 @@ script = ExtResource("6_mumxh")
 sprite = NodePath("../../Sprite")
 metadata/_custom_type_script = "uid://skt61k8p0nqa"
 
-[node name="ConjurationState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite")]
+[node name="ConjurationState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite", "fx")]
 script = ExtResource("7_a3ear")
 character = NodePath("../..")
 sprite = NodePath("../../Sprite")
+fx = NodePath("../../ConjuringFxComponent")
 
 [node name="ConjuringFxComponent" parent="." instance=ExtResource("8_f4shx")]

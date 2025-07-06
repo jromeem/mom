@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhms6ovgyeleu"]
+[gd_scene load_steps=11 format=3 uid="uid://bhms6ovgyeleu"]
 
 [ext_resource type="PackedScene" uid="uid://cy6cjdlpy734f" path="res://environment/Environment.tscn" id="2_0h8po"]
 [ext_resource type="PackedScene" uid="uid://ctknsnh5k117" path="res://entities/dino/Dino.tscn" id="6_r2ac1"]
 [ext_resource type="PackedScene" uid="uid://b4qmjerh51iyc" path="res://entities/slime/Slime.tscn" id="7_d3r6l"]
 [ext_resource type="Script" uid="uid://cf1adtnptmfro" path="res://utils/typing_manager.gd" id="8_bg6xb"]
+[ext_resource type="PackedScene" uid="uid://cwhfgde30qddp" path="res://ui/conjuring.tscn" id="9_bg6xb"]
 [ext_resource type="Script" uid="uid://b7rdy3grnplpl" path="res://entities/dummy/path.gd" id="9_j2iu7"]
 [ext_resource type="PackedScene" uid="uid://dapuclalsraxb" path="res://entities/dummy/Dummy.tscn" id="10_j4nmm"]
 [ext_resource type="PackedScene" uid="uid://d2gmvehtmgy43" path="res://entities/cursor/Cursor.tscn" id="11_ggtbl"]
@@ -19,14 +20,17 @@ point_count = 5
 y_sort_enabled = true
 
 [node name="Environment" parent="." instance=ExtResource("2_0h8po")]
+z_index = 1
 
 [node name="Dino" parent="." instance=ExtResource("6_r2ac1")]
-position = Vector2(40.0292, 998.756)
+position = Vector2(-50.3399, 719.134)
+is_point_click_navigation = true
 
 [node name="PetSlime" parent="." instance=ExtResource("7_d3r6l")]
-position = Vector2(-156.18, 970.285)
+position = Vector2(-2.9467, 746.297)
 
 [node name="Path2D" type="Path2D" parent="."]
+z_index = 1
 curve = SubResource("Curve2D_5vvyt")
 script = ExtResource("9_j2iu7")
 
@@ -52,8 +56,16 @@ grow_vertical = 2
 script = ExtResource("8_bg6xb")
 
 [node name="Camera" type="Camera2D" parent="."]
-position = Vector2(-19.9297, 1017.96)
+z_index = 1
+position = Vector2(-22.3163, 927.269)
 offset = Vector2(0, -24)
 zoom = Vector2(3, 3)
-position_smoothing_enabled = true
 script = ExtResource("13_o8qko")
+
+[node name="Conjuring" parent="Camera" instance=ExtResource("9_bg6xb")]
+z_index = 0
+anchors_preset = -1
+offset_left = -157.873
+offset_top = 78.6867
+offset_right = -157.873
+offset_bottom = 78.6867
