@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://5qgs12npr52y" path="res://entities/slime/slime-idle.png" id="1_cwriv"]
 [ext_resource type="Script" uid="uid://btfu3usftq4s2" path="res://entities/slime/slime.gd" id="1_p1nqj"]
 [ext_resource type="Texture2D" uid="uid://wf3tm11liw5p" path="res://entities/slime/slime-walk22.png" id="2_oh23g"]
-[ext_resource type="PackedScene" uid="uid://0x0uclmjefoo" path="res://components/follows_component.tscn" id="4_07yf0"]
+[ext_resource type="PackedScene" uid="uid://0x0uclmjefoo" path="res://components/Follows_Component.tscn" id="4_07yf0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yp2de"]
 atlas = ExtResource("1_cwriv")

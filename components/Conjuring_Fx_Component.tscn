@@ -1,25 +1,26 @@
-[gd_scene load_steps=8 format=3 uid="uid://dnubpts764qnm"]
+[gd_scene load_steps=9 format=3 uid="uid://4winow2ll5rt"]
 
-[ext_resource type="Texture2D" uid="uid://lh0r6tndkt83" path="res://effects/Free Smoke Fx  Pixel 05.png" id="1_bfbwt"]
+[ext_resource type="Script" uid="uid://cc1i6q0iortnf" path="res://entities/dino/conjuring_component.gd" id="1_n7r6c"]
+[ext_resource type="Texture2D" uid="uid://lh0r6tndkt83" path="res://effects/Free Smoke Fx  Pixel 05.png" id="2_7c6wg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xmle"]
-atlas = ExtResource("1_bfbwt")
+atlas = ExtResource("2_7c6wg")
 region = Rect2(384, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k71tj"]
-atlas = ExtResource("1_bfbwt")
+atlas = ExtResource("2_7c6wg")
 region = Rect2(320, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_27m47"]
-atlas = ExtResource("1_bfbwt")
+atlas = ExtResource("2_7c6wg")
 region = Rect2(256, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oxdn6"]
-atlas = ExtResource("1_bfbwt")
+atlas = ExtResource("2_7c6wg")
 region = Rect2(192, 640, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wkl6i"]
-atlas = ExtResource("1_bfbwt")
+atlas = ExtResource("2_7c6wg")
 region = Rect2(128, 640, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jqwnj"]
@@ -57,8 +58,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ConjuringFx" type="AnimatedSprite2D"]
+[node name="ConjuringFxComponent" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_n7r6c")
+
+[node name="ConjuringFx" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -12)
+scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_jqwnj")
 animation = &"smoke_circle"
 autoplay = "smoke_circle"
-frame_progress = 0.603626
+frame_progress = 0.583455
+offset = Vector2(0, 17)

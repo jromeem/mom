@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhms6ovgyeleu"]
+[gd_scene load_steps=10 format=3 uid="uid://bhms6ovgyeleu"]
 
-[ext_resource type="Script" uid="uid://bt2v3m6rhs31m" path="res://main/main.gd" id="1_h5g1y"]
-[ext_resource type="PackedScene" uid="uid://cy6cjdlpy734f" path="res://utils/Environment.tscn" id="2_0h8po"]
+[ext_resource type="PackedScene" uid="uid://cy6cjdlpy734f" path="res://environment/Environment.tscn" id="2_0h8po"]
 [ext_resource type="PackedScene" uid="uid://ctknsnh5k117" path="res://entities/dino/Dino.tscn" id="6_r2ac1"]
 [ext_resource type="PackedScene" uid="uid://b4qmjerh51iyc" path="res://entities/slime/Slime.tscn" id="7_d3r6l"]
-[ext_resource type="Script" uid="uid://cf1adtnptmfro" path="res://main/typing_manager.gd" id="8_bg6xb"]
+[ext_resource type="Script" uid="uid://cf1adtnptmfro" path="res://utils/typing_manager.gd" id="8_bg6xb"]
 [ext_resource type="Script" uid="uid://b7rdy3grnplpl" path="res://entities/dummy/path.gd" id="9_j2iu7"]
 [ext_resource type="PackedScene" uid="uid://dapuclalsraxb" path="res://entities/dummy/Dummy.tscn" id="10_j4nmm"]
 [ext_resource type="PackedScene" uid="uid://d2gmvehtmgy43" path="res://entities/cursor/Cursor.tscn" id="11_ggtbl"]
@@ -18,7 +17,6 @@ point_count = 5
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_h5g1y")
 
 [node name="Environment" parent="." instance=ExtResource("2_0h8po")]
 
