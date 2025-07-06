@@ -10,6 +10,11 @@ signal reached_target
 func set_target(pos: Vector2):
 	if (pos):
 		nav_agent.target_position = pos
+		
+func remove_target():
+	# reset target as self 
+	set_target(follower.position)
+	nav_agent.navigation_finished.emit()
 
 func follow_target():
 	if !nav_agent.target_position:

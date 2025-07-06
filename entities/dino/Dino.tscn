@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://ctknsnh5k117"]
+[gd_scene load_steps=41 format=3 uid="uid://ctknsnh5k117"]
 
 [ext_resource type="Script" uid="uid://o2853gabt13v" path="res://entities/dino/dino.gd" id="1_sursh"]
 [ext_resource type="Texture2D" uid="uid://kc72osno8f0o" path="res://entities/dino/DinoSprites - vita.png" id="2_fdobs"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://0x0uclmjefoo" path="res://components/follows_component.tscn" id="3_dngs1"]
 [ext_resource type="Script" uid="uid://ddyrh32it648e" path="res://entities/dino/navigate_state.gd" id="5_mumxh"]
 [ext_resource type="Script" uid="uid://cmx2jo5xe1lbk" path="res://entities/dino/idle_state.gd" id="6_mumxh"]
+[ext_resource type="Script" uid="uid://bodgqlkdn0yo6" path="res://entities/dino/conjuration_state.gd" id="7_a3ear"]
+[ext_resource type="Script" uid="uid://cc1i6q0iortnf" path="res://entities/dino/conjuring_component.gd" id="8_36pu7"]
+[ext_resource type="Texture2D" uid="uid://lh0r6tndkt83" path="res://effects/Free Smoke Fx  Pixel 05.png" id="8_f4shx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xm2m"]
 atlas = ExtResource("2_fdobs")
@@ -112,8 +115,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_5vw27")
 }],
 "loop": true,
-"name": &"attack",
-"speed": 6.0
+"name": &"conjuring",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -208,6 +211,61 @@ animations = [{
 radius = 2.85714
 height = 11.4286
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xmle"]
+atlas = ExtResource("8_f4shx")
+region = Rect2(384, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k71tj"]
+atlas = ExtResource("8_f4shx")
+region = Rect2(320, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27m47"]
+atlas = ExtResource("8_f4shx")
+region = Rect2(256, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxdn6"]
+atlas = ExtResource("8_f4shx")
+region = Rect2(192, 640, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkl6i"]
+atlas = ExtResource("8_f4shx")
+region = Rect2(128, 640, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jqwnj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xmle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27m47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxdn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkl6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxdn6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_27m47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k71tj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xmle")
+}],
+"loop": true,
+"name": &"smoke_circle",
+"speed": 5.0
+}]
+
 [node name="Dino" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
 y_sort_enabled = true
@@ -218,7 +276,8 @@ script = ExtResource("1_sursh")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_272bh")
-animation = &"idle"
+animation = &"conjuring"
+frame_progress = 0.192337
 offset = Vector2(0, -5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -244,3 +303,22 @@ metadata/_custom_type_script = "uid://skt61k8p0nqa"
 script = ExtResource("6_mumxh")
 sprite = NodePath("../../Sprite")
 metadata/_custom_type_script = "uid://skt61k8p0nqa"
+
+[node name="ConjurationState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite")]
+script = ExtResource("7_a3ear")
+character = NodePath("../..")
+sprite = NodePath("../../Sprite")
+
+[node name="ConjuringFxComponent" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("8_36pu7")
+
+[node name="ConjuringFx" type="AnimatedSprite2D" parent="ConjuringFxComponent"]
+y_sort_enabled = true
+position = Vector2(0, -12)
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_jqwnj")
+animation = &"smoke_circle"
+autoplay = "smoke_circle"
+frame_progress = 0.717933
+offset = Vector2(0, 17)

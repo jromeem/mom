@@ -9,8 +9,6 @@ var grid_size = 16
 var target_square: ColorRect = null
 var outline_square: ColorRect = null
 
-signal terrain_clicked_for_movement(world_position: Vector2)
-
 func _input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
@@ -22,7 +20,7 @@ func handle_click(pos):
 	create_target_square(clicked_pos)
 	
 	# emit signal that was clicked
-	terrain_clicked_for_movement.emit(pos)
+	SignalManager.terrain_clicked_for_movement.emit(pos)
 
 func create_target_square(pos: Vector2):
 	# Remove existing target square

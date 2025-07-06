@@ -3,14 +3,12 @@ class_name IdleState
 
 @export var sprite: AnimatedSprite2D
 
-func enter():
-	sprite.play("idle")
+func can_move() -> bool:
+	return true
+	
+func can_conjure() -> bool:
+	return true
 
-func exit():
-	pass
-	
-func update(_delta: float):
-	pass
-	
-func physics_update(_delta: float):
-	pass
+func enter():
+	print("entering Idle state")
+	sprite.play("idle")

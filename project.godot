@@ -14,6 +14,10 @@ config/name="MakersOfMagic"
 run/main_scene="res://main/Main.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 
+[autoload]
+
+SignalManager="*res://utils/signal_manager.gd"
+
 [display]
 
 window/size/viewport_width=2000
