@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ctknsnh5k117"]
+[gd_scene load_steps=36 format=3 uid="uid://ctknsnh5k117"]
 
 [ext_resource type="Script" uid="uid://o2853gabt13v" path="res://entities/dino/dino.gd" id="1_sursh"]
 [ext_resource type="Texture2D" uid="uid://kc72osno8f0o" path="res://entities/dino/DinoSprites - vita.png" id="2_fdobs"]
@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://ddyrh32it648e" path="res://entities/dino/navigate_state.gd" id="5_mumxh"]
 [ext_resource type="Script" uid="uid://cmx2jo5xe1lbk" path="res://entities/dino/idle_state.gd" id="6_mumxh"]
 [ext_resource type="Script" uid="uid://bodgqlkdn0yo6" path="res://entities/dino/conjuration_state.gd" id="7_a3ear"]
+[ext_resource type="Script" uid="uid://b0x35qumsf8br" path="res://entities/dino/moving_state.gd" id="8_36pu7"]
 [ext_resource type="PackedScene" uid="uid://4winow2ll5rt" path="res://components/Conjuring_Fx_Component.tscn" id="8_f4shx"]
+[ext_resource type="PackedScene" uid="uid://cwhfgde30qddp" path="res://ui/conjuring.tscn" id="10_wbybn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xm2m"]
 atlas = ExtResource("2_fdobs")
@@ -217,6 +219,7 @@ scale = Vector2(1.75, 1.75)
 collision_layer = 256
 collision_mask = 1031
 script = ExtResource("1_sursh")
+is_point_click_navigation = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_272bh")
@@ -237,6 +240,12 @@ follower = NodePath("..")
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_2dk2g")]
 initial_state = NodePath("IdleState")
 
+[node name="MovingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite")]
+script = ExtResource("8_36pu7")
+character = NodePath("../..")
+sprite = NodePath("../../Sprite")
+metadata/_custom_type_script = "uid://skt61k8p0nqa"
+
 [node name="NavigateState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite", "follows_component")]
 script = ExtResource("5_mumxh")
 character = NodePath("../..")
@@ -256,3 +265,13 @@ sprite = NodePath("../../Sprite")
 fx = NodePath("../../ConjuringFxComponent")
 
 [node name="ConjuringFxComponent" parent="." instance=ExtResource("8_f4shx")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+
+[node name="Conjuring" parent="Camera2D" instance=ExtResource("10_wbybn")]
+offset_left = -52.4822
+offset_top = 32.8416
+offset_right = -52.4822
+offset_bottom = 32.8416
+scale = Vector2(0.7, 0.7)

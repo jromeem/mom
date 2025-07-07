@@ -1,20 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhms6ovgyeleu"]
+[gd_scene load_steps=6 format=3 uid="uid://bhms6ovgyeleu"]
 
 [ext_resource type="PackedScene" uid="uid://cy6cjdlpy734f" path="res://environment/Environment.tscn" id="2_0h8po"]
 [ext_resource type="PackedScene" uid="uid://ctknsnh5k117" path="res://entities/dino/Dino.tscn" id="6_r2ac1"]
 [ext_resource type="PackedScene" uid="uid://b4qmjerh51iyc" path="res://entities/slime/Slime.tscn" id="7_d3r6l"]
 [ext_resource type="Script" uid="uid://cf1adtnptmfro" path="res://utils/typing_manager.gd" id="8_bg6xb"]
-[ext_resource type="PackedScene" uid="uid://cwhfgde30qddp" path="res://ui/conjuring.tscn" id="9_bg6xb"]
-[ext_resource type="Script" uid="uid://b7rdy3grnplpl" path="res://entities/dummy/path.gd" id="9_j2iu7"]
-[ext_resource type="PackedScene" uid="uid://dapuclalsraxb" path="res://entities/dummy/Dummy.tscn" id="10_j4nmm"]
 [ext_resource type="PackedScene" uid="uid://d2gmvehtmgy43" path="res://entities/cursor/Cursor.tscn" id="11_ggtbl"]
-[ext_resource type="Script" uid="uid://dy5bwg7x67tky" path="res://entities/camera/camera.gd" id="13_o8qko"]
-
-[sub_resource type="Curve2D" id="Curve2D_5vvyt"]
-_data = {
-"points": PackedVector2Array(-0.987553, 46.6971, 0.987553, -46.6971, -97.5958, 1087.79, -18.6224, 0.564316, 18.6224, -0.564316, -46.3841, 1031.92, 0.846474, -36.9627, -0.846474, 36.9627, 11.1761, 1086.8, 47.1204, 0.423237, -47.1204, -0.423237, -42.575, 1142.81, 0, 0, 0, 0, -97.5958, 1087.79)
-}
-point_count = 5
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -23,49 +13,18 @@ y_sort_enabled = true
 z_index = 1
 
 [node name="Dino" parent="." instance=ExtResource("6_r2ac1")]
-position = Vector2(-50.3399, 719.134)
-is_point_click_navigation = true
+position = Vector2(89.7197, 921.06)
 
 [node name="PetSlime" parent="." instance=ExtResource("7_d3r6l")]
-position = Vector2(-2.9467, 746.297)
-
-[node name="Path2D" type="Path2D" parent="."]
-z_index = 1
-curve = SubResource("Curve2D_5vvyt")
-script = ExtResource("9_j2iu7")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2(-97.5958, 1087.79)
-rotates = false
-
-[node name="Dummy" parent="Path2D/PathFollow2D" instance=ExtResource("10_j4nmm")]
-position = Vector2(-0.0101852, -0.986473)
+position = Vector2(232.303, 991.973)
 
 [node name="Cursor" parent="." instance=ExtResource("11_ggtbl")]
 z_index = 2
 anchors_preset = 9
 anchor_right = 0.0
 anchor_bottom = 1.0
-offset_left = -158.684
-offset_top = 1042.0
-offset_right = -158.684
-offset_bottom = 1042.0
+offset_bottom = 0.0
 grow_vertical = 2
 
 [node name="TypingManager" type="Node" parent="."]
 script = ExtResource("8_bg6xb")
-
-[node name="Camera" type="Camera2D" parent="."]
-z_index = 1
-position = Vector2(-22.3163, 927.269)
-offset = Vector2(0, -24)
-zoom = Vector2(3, 3)
-script = ExtResource("13_o8qko")
-
-[node name="Conjuring" parent="Camera" instance=ExtResource("9_bg6xb")]
-z_index = 0
-anchors_preset = -1
-offset_left = -157.873
-offset_top = 78.6867
-offset_right = -157.873
-offset_bottom = 78.6867

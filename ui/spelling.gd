@@ -36,7 +36,7 @@ func _on_conjure_toggle():
 
 func conjure_start():
 	line_edit.visible = true
-	line_edit.grab_focus()
+	line_edit.call_deferred("grab_focus")
 
 func conjure_end():
 	label.text = spellword
