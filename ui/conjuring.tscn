@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cwhfgde30qddp"]
+[gd_scene load_steps=8 format=3 uid="uid://cwhfgde30qddp"]
 
+[ext_resource type="Script" uid="uid://dbik7vfulnob6" path="res://ui/conjuring.gd" id="1_okbqb"]
 [ext_resource type="Script" uid="uid://b6k1a1k603ygk" path="res://ui/spelling.gd" id="1_seqx7"]
 [ext_resource type="Script" uid="uid://ditfhniqbe7o8" path="res://ui/spell_signaling.gd" id="2_1xbjd"]
 
@@ -45,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_okbqb")
 
 [node name="Label" type="RichTextLabel" parent="."]
 layout_mode = 2
@@ -413,4 +415,3 @@ color = Color(0.494118, 0.368627, 0.262745, 0.647059)
 [connection signal="root_detected" from="Spelling" to="SpellContainer" method="_on_root_detected"]
 [connection signal="suffix_detected" from="Spelling" to="SpellContainer" method="_on_suffix_detected"]
 [connection signal="text_changed" from="Spelling" to="Spelling" method="_on_text_changed"]
-[connection signal="valid_spellword" from="Spelling" to="SpellContainer" method="_on_valid_spellword"]

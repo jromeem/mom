@@ -1,4 +1,5 @@
 extends FlowContainer
+class_name SpellContainer
 
 # Highlight the corresponding glyphs based on the detected components
 func highlight_all_components(components: Array):
@@ -29,7 +30,7 @@ func _on_root_detected(_root):
 func _on_suffix_detected(_suffix):
 	pass
 
-func _on_invalid_spellword(spellword) -> void:
+func _on_invalid_spellword(_spellword) -> void:
 	#print('invalid spell!', spellword)
 	reset_highlights()
 

@@ -10,13 +10,11 @@ func can_conjure() -> bool:
 	return false  # Can't conjure while moving
 
 func enter():
-	print("entering Navigate state")
 	sprite.play("walk")
 	SignalManager.reached_target.connect(_on_reached_target)
 	SignalManager.spacebar_pressed_for_conjuration.connect(_on_navigating_will_conjure)
 	
 func exit():
-	print("exiting Navigate state")
 	SignalManager.reached_target.disconnect(_on_reached_target)
 	SignalManager.spacebar_pressed_for_conjuration.disconnect(_on_navigating_will_conjure)
 	

@@ -10,5 +10,4 @@ func can_conjure() -> bool:
 	return true
 
 func enter():
-	print("entering Idle state")
 	sprite.play("idle")

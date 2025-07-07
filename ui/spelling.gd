@@ -1,13 +1,15 @@
 extends LineEdit
+class_name Spelling
 
+var spellword = ''
 var isConjuring = false
 var allowed_characters = "[A-Za-z]"
+
 @onready var line_edit: LineEdit = $"."
-@export var spellword = ''
 @onready var label: RichTextLabel = $"../Label"
 
 signal invalid_spellword(word)
-signal valid_spellword(word)
+#signal valid_spellword(word) # it was here-- moved it to the SignalManager
 signal prefix_detected(prefix)
 signal root_detected(root)
 signal suffix_detected(suffix)
@@ -171,7 +173,7 @@ func _on_text_changed(new_text: String) -> void:
 	var lowercase_spell = spellword.to_lower()
 	
 	if is_valid_spell(lowercase_spell):
-		valid_spellword.emit(spellword)
+		SignalManager.valid_spellword.emit(spellword)
 	else:
 		invalid_spellword.emit(spellword)
 		spellword = ''

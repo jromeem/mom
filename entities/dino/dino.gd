@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var is_point_click_navigation: bool = true
+@onready var conjuring: ConjuringHead = $Camera2D/Conjuring
 @onready var follows_component: FollowsComponent = $"FollowsComponent"
 @onready var conjuring_fx_component: ConjuringFxComponent = $ConjuringFxComponent
 @onready var state_machine: StateMachine = $"StateMachine"
@@ -10,6 +11,7 @@ func _ready() -> void:
 		SignalManager.terrain_clicked_for_movement.connect(_on_terrain_clicked_for_movement)
 	SignalManager.spacebar_pressed_for_conjuration.connect(_on_conjuration_toggle)
 	SignalManager.enter_pressed_for_casting.connect(_on_conjure_submitted)
+	SignalManager.valid_spellword.connect(_on_spell_ready)
 
 # Helper functions to check state
 func can_conjure() -> bool:
@@ -17,6 +19,9 @@ func can_conjure() -> bool:
 
 func is_conjuring() -> bool:
 	return state_machine.current_state.name == "ConjurationState"
+	
+func is_casting() -> bool:
+	return state_machine.current_state.name == "CastingState"
 
 func can_move() -> bool:
 	return not is_conjuring()  # Can't move while conjuring
@@ -37,9 +42,13 @@ func _on_conjuration_toggle():
 		state_machine._on_child_transitioned(state_machine.current_state, "ConjurationState")
 
 func _on_conjure_submitted():
-	# placeholder -- should go to CastingState
-	if is_conjuring():
-		state_machine._on_child_transitioned(state_machine.current_state, "IdleState")
+	var spellword = conjuring.get_spellword()
+	print('we have a spell ready!!', spellword)
+	if spellword.length() > 0:
+		state_machine._on_child_transitioned(state_machine.current_state, "CastingState")
+
+func _on_spell_ready(_spellword):
+	pass
 
 func _on_terrain_clicked_for_movement(pos: Vector2):
 	if is_conjuring():

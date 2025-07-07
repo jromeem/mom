@@ -7,3 +7,6 @@ signal terrain_clicked_for_movement(world_position: Vector2)
 
 # component signals
 signal reached_target(who_are_you: CharacterBody2D) # FollowsComponent
+
+# spells
+signal valid_spellword(word)

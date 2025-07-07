@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctknsnh5k117"]
+[gd_scene load_steps=38 format=3 uid="uid://ctknsnh5k117"]
 
 [ext_resource type="Script" uid="uid://o2853gabt13v" path="res://entities/dino/dino.gd" id="1_sursh"]
 [ext_resource type="Texture2D" uid="uid://kc72osno8f0o" path="res://entities/dino/DinoSprites - vita.png" id="2_fdobs"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" uid="uid://bodgqlkdn0yo6" path="res://entities/dino/conjuration_state.gd" id="7_a3ear"]
 [ext_resource type="Script" uid="uid://b0x35qumsf8br" path="res://entities/dino/moving_state.gd" id="8_36pu7"]
 [ext_resource type="PackedScene" uid="uid://4winow2ll5rt" path="res://components/Conjuring_Fx_Component.tscn" id="8_f4shx"]
+[ext_resource type="Script" uid="uid://yip08qddy8im" path="res://entities/dino/casting_state.gd" id="9_qs8ym"]
 [ext_resource type="PackedScene" uid="uid://cwhfgde30qddp" path="res://ui/conjuring.tscn" id="10_wbybn"]
+[ext_resource type="PackedScene" uid="uid://cbbkm4oryi88s" path="res://components/Casting_Fx_Component.tscn" id="11_7ck62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xm2m"]
 atlas = ExtResource("2_fdobs")
@@ -210,7 +212,7 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_sursh"]
 radius = 2.85714
-height = 11.4286
+height = 10.1501
 
 [node name="Dino" type="CharacterBody2D" groups=["Player"]]
 z_index = 1
@@ -222,14 +224,15 @@ script = ExtResource("1_sursh")
 is_point_click_navigation = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 sprite_frames = SubResource("SpriteFrames_272bh")
 animation = &"conjuring"
 frame_progress = 0.0578601
-offset = Vector2(0, -5)
+offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 y_sort_enabled = true
-position = Vector2(-0.571428, 1.14286)
+position = Vector2(-0.753717, -1.92706)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sursh")
 
@@ -264,7 +267,17 @@ character = NodePath("../..")
 sprite = NodePath("../../Sprite")
 fx = NodePath("../../ConjuringFxComponent")
 
+[node name="CastingState" type="Node" parent="StateMachine"]
+script = ExtResource("9_qs8ym")
+metadata/_custom_type_script = "uid://skt61k8p0nqa"
+
 [node name="ConjuringFxComponent" parent="." instance=ExtResource("8_f4shx")]
+z_index = 1
+position = Vector2(-0.583523, -4.01173)
+
+[node name="CastingFxComponent" parent="." instance=ExtResource("11_7ck62")]
+z_index = 1
+position = Vector2(-0.503732, -10.5489)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.5, 3.5)
