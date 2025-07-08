@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://ctknsnh5k117"]
+[gd_scene load_steps=39 format=3 uid="uid://ctknsnh5k117"]
 
 [ext_resource type="Script" uid="uid://o2853gabt13v" path="res://entities/dino/dino.gd" id="1_sursh"]
 [ext_resource type="Texture2D" uid="uid://kc72osno8f0o" path="res://entities/dino/DinoSprites - vita.png" id="2_fdobs"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://b0x35qumsf8br" path="res://entities/dino/moving_state.gd" id="8_36pu7"]
 [ext_resource type="PackedScene" uid="uid://4winow2ll5rt" path="res://components/Conjuring_Fx_Component.tscn" id="8_f4shx"]
 [ext_resource type="Script" uid="uid://yip08qddy8im" path="res://entities/dino/casting_state.gd" id="9_qs8ym"]
+[ext_resource type="Script" uid="uid://byfropucg81b7" path="res://utils/spell_manager.gd" id="10_j720b"]
 [ext_resource type="PackedScene" uid="uid://cwhfgde30qddp" path="res://ui/conjuring.tscn" id="10_wbybn"]
 [ext_resource type="PackedScene" uid="uid://cbbkm4oryi88s" path="res://components/Casting_Fx_Component.tscn" id="11_7ck62"]
 
@@ -271,6 +272,9 @@ fx = NodePath("../../ConjuringFxComponent")
 script = ExtResource("9_qs8ym")
 metadata/_custom_type_script = "uid://skt61k8p0nqa"
 
+[node name="SpellManager" type="Node" parent="."]
+script = ExtResource("10_j720b")
+
 [node name="ConjuringFxComponent" parent="." instance=ExtResource("8_f4shx")]
 z_index = 1
 position = Vector2(-0.583523, -4.01173)
@@ -288,3 +292,18 @@ offset_top = 32.8416
 offset_right = -52.4822
 offset_bottom = 32.8416
 scale = Vector2(0.7, 0.7)
+
+[node name="ConcentrationMeter" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -21.0
+offset_right = 7.0
+offset_bottom = -19.0
+
+[node name="ColorRect" type="ColorRect" parent="ConcentrationMeter"]
+layout_mode = 0
+offset_right = 15.0
+offset_bottom = 2.0
+color = Color(0.960784, 0.780392, 0.00784314, 1)

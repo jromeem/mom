@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+var concentration_meter: float = 100.0
+
+@onready var meter_rect: ColorRect = $ConcentrationMeter/ColorRect
 @export var is_point_click_navigation: bool = true
 @onready var conjuring: ConjuringHead = $Camera2D/Conjuring
 @onready var follows_component: FollowsComponent = $"FollowsComponent"
@@ -12,6 +15,9 @@ func _ready() -> void:
 	SignalManager.spacebar_pressed_for_conjuration.connect(_on_conjuration_toggle)
 	SignalManager.enter_pressed_for_casting.connect(_on_conjure_submitted)
 	SignalManager.valid_spellword.connect(_on_spell_ready)
+
+func _process(delta: float) -> void:
+	meter_rect.size.x -= delta * 0.5
 
 # Helper functions to check state
 func can_conjure() -> bool:
