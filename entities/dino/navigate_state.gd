@@ -1,22 +1,16 @@
 extends State
 class_name NavigateState
 
-var conjuration_queued: bool = false
 @export var character: CharacterBody2D
 @export var sprite: AnimatedSprite2D
 @export var follows_component: FollowsComponent
 
-func can_conjure() -> bool:
-	return false  # Can't conjure while moving
-
 func enter():
 	sprite.play("walk")
 	SignalManager.reached_target.connect(_on_reached_target)
-	SignalManager.spacebar_pressed_for_conjuration.connect(_on_navigating_will_conjure)
 	
 func exit():
 	SignalManager.reached_target.disconnect(_on_reached_target)
-	SignalManager.spacebar_pressed_for_conjuration.disconnect(_on_navigating_will_conjure)
 	
 func update(_delta: float):
 	sprite.play("walk")
@@ -30,7 +24,3 @@ func update(_delta: float):
 func _on_reached_target(who_are_you: CharacterBody2D):
 	if who_are_you == character:
 		transitioned.emit(self, "IdleState")
-		
-# use later??
-func _on_navigating_will_conjure():
-	conjuration_queued = !conjuration_queued

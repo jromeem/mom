@@ -1,18 +1,14 @@
-# moving_state.gd (replaces navigate_state.gd)
 extends State
 class_name MovingState
 
+var speed: float = 80
 var conjuring_started: bool
-@export var character: CharacterBody2D
-@export var sprite: AnimatedSprite2D
-@export var speed: float = 80
+@onready var character: CharacterBody2D = $"../.."
+@onready var sprite: AnimatedSprite2D = $"../../Sprite"
 
 func enter():
 	conjuring_started = false
 	sprite.play("walk")
-	
-func exit():
-	pass
 	
 func update(_delta: float):
 	# Early exit if conjuring - don't process ANY input

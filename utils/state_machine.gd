@@ -1,10 +1,10 @@
 extends Node
 class_name StateMachine
 
-@export var initial_state: State
-
 var current_state: State
 var states: Dictionary = {}
+
+@export var initial_state: State
 
 func _ready() -> void:
 	for child in get_children():

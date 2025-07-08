@@ -1,17 +1,14 @@
-[gd_scene load_steps=39 format=3 uid="uid://ctknsnh5k117"]
+[gd_scene load_steps=36 format=3 uid="uid://ctknsnh5k117"]
 
 [ext_resource type="Script" uid="uid://o2853gabt13v" path="res://entities/dino/dino.gd" id="1_sursh"]
 [ext_resource type="Texture2D" uid="uid://kc72osno8f0o" path="res://entities/dino/DinoSprites - vita.png" id="2_fdobs"]
 [ext_resource type="PackedScene" uid="uid://bxkdql6xam1qp" path="res://utils/State Machine.tscn" id="3_2dk2g"]
-[ext_resource type="PackedScene" uid="uid://0x0uclmjefoo" path="res://components/Follows_Component.tscn" id="3_dngs1"]
-[ext_resource type="Script" uid="uid://ddyrh32it648e" path="res://entities/dino/navigate_state.gd" id="5_mumxh"]
 [ext_resource type="Script" uid="uid://cmx2jo5xe1lbk" path="res://entities/dino/idle_state.gd" id="6_mumxh"]
 [ext_resource type="Script" uid="uid://bodgqlkdn0yo6" path="res://entities/dino/conjuration_state.gd" id="7_a3ear"]
 [ext_resource type="Script" uid="uid://b0x35qumsf8br" path="res://entities/dino/moving_state.gd" id="8_36pu7"]
 [ext_resource type="PackedScene" uid="uid://4winow2ll5rt" path="res://components/Conjuring_Fx_Component.tscn" id="8_f4shx"]
 [ext_resource type="Script" uid="uid://yip08qddy8im" path="res://entities/dino/casting_state.gd" id="9_qs8ym"]
 [ext_resource type="Script" uid="uid://byfropucg81b7" path="res://utils/spell_manager.gd" id="10_j720b"]
-[ext_resource type="PackedScene" uid="uid://cwhfgde30qddp" path="res://ui/conjuring.tscn" id="10_wbybn"]
 [ext_resource type="PackedScene" uid="uid://cbbkm4oryi88s" path="res://components/Casting_Fx_Component.tscn" id="11_7ck62"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xm2m"]
@@ -222,7 +219,6 @@ scale = Vector2(1.75, 1.75)
 collision_layer = 256
 collision_mask = 1031
 script = ExtResource("1_sursh")
-is_point_click_navigation = false
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = 1
@@ -237,36 +233,19 @@ position = Vector2(-0.753717, -1.92706)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_sursh")
 
-[node name="FollowsComponent" parent="." node_paths=PackedStringArray("follower") instance=ExtResource("3_dngs1")]
-target_visualized = true
-follower = NodePath("..")
-
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("3_2dk2g")]
 initial_state = NodePath("IdleState")
 
-[node name="MovingState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite")]
+[node name="MovingState" type="Node" parent="StateMachine"]
 script = ExtResource("8_36pu7")
-character = NodePath("../..")
-sprite = NodePath("../../Sprite")
 metadata/_custom_type_script = "uid://skt61k8p0nqa"
 
-[node name="NavigateState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite", "follows_component")]
-script = ExtResource("5_mumxh")
-character = NodePath("../..")
-sprite = NodePath("../../Sprite")
-follows_component = NodePath("../../FollowsComponent")
-metadata/_custom_type_script = "uid://skt61k8p0nqa"
-
-[node name="IdleState" type="Node" parent="StateMachine" node_paths=PackedStringArray("sprite")]
+[node name="IdleState" type="Node" parent="StateMachine"]
 script = ExtResource("6_mumxh")
-sprite = NodePath("../../Sprite")
 metadata/_custom_type_script = "uid://skt61k8p0nqa"
 
-[node name="ConjurationState" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "sprite", "fx")]
+[node name="ConjurationState" type="Node" parent="StateMachine"]
 script = ExtResource("7_a3ear")
-character = NodePath("../..")
-sprite = NodePath("../../Sprite")
-fx = NodePath("../../ConjuringFxComponent")
 
 [node name="CastingState" type="Node" parent="StateMachine"]
 script = ExtResource("9_qs8ym")
@@ -279,21 +258,8 @@ script = ExtResource("10_j720b")
 z_index = 1
 position = Vector2(-0.583523, -4.01173)
 
-[node name="CastingFxComponent" parent="." instance=ExtResource("11_7ck62")]
-z_index = 1
-position = Vector2(-0.503732, -10.5489)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.5, 3.5)
-
-[node name="Conjuring" parent="Camera2D" instance=ExtResource("10_wbybn")]
-offset_left = -52.4822
-offset_top = 32.8416
-offset_right = -52.4822
-offset_bottom = 32.8416
-scale = Vector2(0.7, 0.7)
-
 [node name="ConcentrationMeter" type="Control" parent="."]
+visible = false
 z_index = 1
 layout_mode = 3
 anchors_preset = 0
@@ -307,3 +273,20 @@ layout_mode = 0
 offset_right = 15.0
 offset_bottom = 2.0
 color = Color(0.960784, 0.780392, 0.00784314, 1)
+
+[node name="CastingFxComponent" parent="." instance=ExtResource("11_7ck62")]
+visible = false
+z_index = 1
+position = Vector2(0, -10)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.5, 3.5)
+
+[node name="TextBox" type="LineEdit" parent="Camera2D"]
+z_index = 2
+offset_left = -154.525
+offset_top = 93.8334
+offset_right = 45.4755
+offset_bottom = 124.833
+scale = Vector2(0.6, 0.6)
+editable = false

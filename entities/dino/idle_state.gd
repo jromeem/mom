@@ -1,7 +1,7 @@
 extends State
 class_name IdleState
 
-@export var sprite: AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $"../../Sprite"
 
 func can_move() -> bool:
 	return true

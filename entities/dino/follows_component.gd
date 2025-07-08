@@ -17,9 +17,6 @@ func set_target(pos: Vector2):
 	if (pos):
 		nav_agent.target_position = pos
 		
-		var cursor = get_tree().get_first_node_in_group("Cursor")
-		place_target(cursor.snap_to_grid(pos))
-		
 func remove_target():
 	set_target(follower.position)
 	

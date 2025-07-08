@@ -2,48 +2,13 @@ extends LineEdit
 class_name Spelling
 
 var spellword = ''
-var isConjuring = false
 var allowed_characters = "[A-Za-z]"
 
-@onready var line_edit: LineEdit = $"."
-@onready var label: RichTextLabel = $"../Label"
-
 signal invalid_spellword(word)
-#signal valid_spellword(word) # it was here-- moved it to the SignalManager
+signal valid_spellword(word)
 signal prefix_detected(prefix)
 signal root_detected(root)
 signal suffix_detected(suffix)
-
-func _ready():
-	line_edit.visible = false
-	SignalManager.spacebar_pressed_for_conjuration.connect(_on_conjure_toggle)
-	SignalManager.enter_pressed_for_casting.connect(_on_conjure_submitted)
-
-func _on_conjure_submitted():
-	isConjuring = false
-	conjure_end()
-
-func _on_conjure_toggle():
-	isConjuring = !isConjuring
-	
-	var dino = get_tree().get_first_node_in_group("Player")
-	if not dino.can_conjure():
-		isConjuring = false
-		return # don't allow conjuring -- ui doesnt show
-	
-	if isConjuring:
-		conjure_start()
-	else:
-		conjure_end()
-
-func conjure_start():
-	line_edit.visible = true
-	line_edit.call_deferred("grab_focus")
-
-func conjure_end():
-	label.text = spellword
-	line_edit.visible = false
-	line_edit.text = ''
 
 # Define roots, prefixes, and suffixes for validation
 var lesser_roots = ["pyri", "aqua", "volt", "zeph", "terr", "lux", "nox", "ferrum"]

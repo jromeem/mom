@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bhms6ovgyeleu"]
+[gd_scene load_steps=6 format=3 uid="uid://bhms6ovgyeleu"]
 
 [ext_resource type="PackedScene" uid="uid://cy6cjdlpy734f" path="res://environment/Environment.tscn" id="2_0h8po"]
 [ext_resource type="PackedScene" uid="uid://ctknsnh5k117" path="res://entities/dino/Dino.tscn" id="6_r2ac1"]
 [ext_resource type="PackedScene" uid="uid://b4qmjerh51iyc" path="res://entities/slime/Slime.tscn" id="7_d3r6l"]
 [ext_resource type="PackedScene" uid="uid://bdk1fwibnape7" path="res://effects/Effects_Component.tscn" id="7_o80qs"]
 [ext_resource type="Script" uid="uid://cf1adtnptmfro" path="res://utils/typing_manager.gd" id="8_bg6xb"]
-[ext_resource type="PackedScene" uid="uid://dapuclalsraxb" path="res://entities/dummy/Dummy.tscn" id="10_j4nmm"]
-[ext_resource type="PackedScene" uid="uid://d2gmvehtmgy43" path="res://entities/cursor/Cursor.tscn" id="11_ggtbl"]
 
 [node name="Main" type="Node2D"]
 y_sort_enabled = true
@@ -21,32 +19,6 @@ position = Vector2(60.8639, -12.0896)
 
 [node name="PetSlime" parent="." instance=ExtResource("7_d3r6l")]
 position = Vector2(117.507, 31.0789)
-
-[node name="Dummy" parent="." instance=ExtResource("10_j4nmm")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(150.056, 40.7646)
-
-[node name="Dummy2" parent="." instance=ExtResource("10_j4nmm")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(182.739, -20.9954)
-
-[node name="Dummy3" parent="." instance=ExtResource("10_j4nmm")]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(85.6705, 63.9958)
-
-[node name="Cursor" parent="." instance=ExtResource("11_ggtbl")]
-z_index = 2
-anchors_preset = 9
-anchor_right = 0.0
-anchor_bottom = 1.0
-offset_left = 199.384
-offset_top = -3.61115
-offset_right = 199.384
-offset_bottom = -3.61115
-grow_vertical = 2
 
 [node name="TypingManager" type="Node" parent="."]
 script = ExtResource("8_bg6xb")
