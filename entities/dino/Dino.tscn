@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctknsnh5k117"]
+[gd_scene load_steps=38 format=3 uid="uid://ctknsnh5k117"]
 
 [ext_resource type="Script" uid="uid://o2853gabt13v" path="res://entities/dino/dino.gd" id="1_sursh"]
 [ext_resource type="Texture2D" uid="uid://kc72osno8f0o" path="res://entities/dino/DinoSprites - vita.png" id="2_fdobs"]
@@ -8,8 +8,10 @@
 [ext_resource type="Script" uid="uid://b0x35qumsf8br" path="res://entities/dino/moving_state.gd" id="8_36pu7"]
 [ext_resource type="PackedScene" uid="uid://4winow2ll5rt" path="res://components/Conjuring_Fx_Component.tscn" id="8_f4shx"]
 [ext_resource type="Script" uid="uid://yip08qddy8im" path="res://entities/dino/casting_state.gd" id="9_qs8ym"]
+[ext_resource type="Script" uid="uid://dqdjhfn554br6" path="res://entities/dino/casting_fx_component.gd" id="10_7ck62"]
 [ext_resource type="Script" uid="uid://byfropucg81b7" path="res://utils/spell_manager.gd" id="10_j720b"]
-[ext_resource type="PackedScene" uid="uid://cbbkm4oryi88s" path="res://components/Casting_Fx_Component.tscn" id="11_7ck62"]
+[ext_resource type="Texture2D" uid="uid://2qbgi5iim81c" path="res://effects/blank.png" id="11_j720b"]
+[ext_resource type="Texture2D" uid="uid://4hhfyvoquajm" path="res://effects/magic_circle.png" id="12_larsl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xm2m"]
 atlas = ExtResource("2_fdobs")
@@ -274,10 +276,21 @@ offset_right = 15.0
 offset_bottom = 2.0
 color = Color(0.960784, 0.780392, 0.00784314, 1)
 
-[node name="CastingFxComponent" parent="." instance=ExtResource("11_7ck62")]
+[node name="CastingFxComponent" type="Node2D" parent="."]
 visible = false
 z_index = 1
+y_sort_enabled = true
 position = Vector2(0, -10)
+script = ExtResource("10_7ck62")
+
+[node name="SquishMe" type="Sprite2D" parent="CastingFxComponent"]
+scale = Vector2(0.189082, 0.0693218)
+texture = ExtResource("11_j720b")
+
+[node name="RotateMe" type="Sprite2D" parent="CastingFxComponent/SquishMe"]
+position = Vector2(0, 153)
+texture = ExtResource("12_larsl")
+offset = Vector2(5, -4)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3.5, 3.5)

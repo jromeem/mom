@@ -12,7 +12,7 @@ func _input(event):
 			handle_click(world_position)
 
 func handle_click(pos):
-	var clicked_pos = snap_to_grid(pos)
+	var _clicked_pos = snap_to_grid(pos)
 	SignalManager.terrain_clicked_for_movement.emit(pos)
 
 func _process(_delta: float) -> void:

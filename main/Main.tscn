@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhms6ovgyeleu"]
+[gd_scene load_steps=7 format=3 uid="uid://bhms6ovgyeleu"]
 
 [ext_resource type="PackedScene" uid="uid://cy6cjdlpy734f" path="res://environment/Environment.tscn" id="2_0h8po"]
+[ext_resource type="PackedScene" uid="uid://d2gmvehtmgy43" path="res://ui/cursor/Cursor.tscn" id="6_qtrhv"]
 [ext_resource type="PackedScene" uid="uid://ctknsnh5k117" path="res://entities/dino/Dino.tscn" id="6_r2ac1"]
 [ext_resource type="PackedScene" uid="uid://b4qmjerh51iyc" path="res://entities/slime/Slime.tscn" id="7_d3r6l"]
-[ext_resource type="PackedScene" uid="uid://bdk1fwibnape7" path="res://effects/Effects_Component.tscn" id="7_o80qs"]
+[ext_resource type="PackedScene" uid="uid://bdk1fwibnape7" path="res://effects/Effects_Manager.tscn" id="7_o80qs"]
 [ext_resource type="Script" uid="uid://cf1adtnptmfro" path="res://utils/typing_manager.gd" id="8_bg6xb"]
 
 [node name="Main" type="Node2D"]
@@ -23,5 +24,12 @@ position = Vector2(117.507, 31.0789)
 [node name="TypingManager" type="Node" parent="."]
 script = ExtResource("8_bg6xb")
 
-[node name="EffectsComponent" parent="." instance=ExtResource("7_o80qs")]
+[node name="EffectsManager" parent="." instance=ExtResource("7_o80qs")]
 position = Vector2(144.353, -15.9072)
+
+[node name="Cursor" parent="EffectsManager" instance=ExtResource("6_qtrhv")]
+visible = false
+offset_left = -144.353
+offset_top = 15.9072
+offset_right = -144.353
+offset_bottom = 15.9072

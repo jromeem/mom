@@ -1,5 +1,9 @@
 extends CharacterBody2D
 
+# dino starting stats :)
+# more to resource later (?)
+var concentration: float = 30.0
+
 @onready var state_machine: StateMachine = $"StateMachine"
 
 func _ready() -> void:

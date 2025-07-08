@@ -114,9 +114,7 @@ func parse_spell(spell_input: String) -> Dictionary:
 
 func prepare_spell():
 	print('preparing spell! ', spell_data["valid"])
-
-func is_valid_spell(spell_input: String) -> bool:
-	return parse_spell(spell_input)["valid"]
+	SignalManager.spell_prepared.emit(spell_data)
 	
 func flatten_array(nested_array: Array) -> Array:
 	var flat_array = []

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdk1fwibnape7"]
+
+[ext_resource type="Script" uid="uid://dedfhyfxhqd08" path="res://effects/effects_manager.gd" id="1_nptb8"]
+[ext_resource type="PackedScene" uid="uid://cfkfvld4g2s52" path="res://effects/pyri.tscn" id="2_radaj"]
+
+[node name="EffectsManager" type="Node2D"]
+z_index = 1
+script = ExtResource("1_nptb8")
+
+[node name="Pyri" parent="." instance=ExtResource("2_radaj")]
